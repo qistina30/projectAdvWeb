@@ -18,51 +18,46 @@ class VolunteerController extends Controller
 
     public function showProfile($id)
     {
-       //$volunteer = Volunteer::findOrFail($id);
-        // Fetch the volunteer data from the database
-        //$volunteer = Volunteer::find($id); // Fetch the volunteer data from the database based on $id
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $volunteer = $user->volunteer;
-        // Pass the volunteer data to the view
-        //return view('profile.show', ['volunteer' => $volunteer]);
+
+        if (!$volunteer) {
+            return redirect()->back()->with('error', 'No volunteer profile found for this user.');
+        }
+
         return view('Volunteer.showProfile', compact('volunteer'));
     }
-    public function create()
+
+    public function edit($id)
     {
-        //
+        $volunteer = Volunteer::findOrFail($id);
+
+        return view('Volunteer.edit', compact('volunteer'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
+        ]);
+
+        $volunteer = Volunteer::findOrFail($id);
+        $volunteer->user->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+        ]);
+
+        return redirect()->back()->withSuccess('Student record updated successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Volunteer $volunteer)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Volunteer $volunteer)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Volunteer $volunteer)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.

@@ -13,6 +13,8 @@
         <p>Name: {{ $volunteer->user->name }}</p>
         <p>Email: {{ $volunteer->user->email }}</p>
         <p>Email: {{ $volunteer->user->phone }}</p>
+
+        <a href="{{ route('volunteer.edit', $volunteer->id) }}" class="btn btn-primary">Edit Profile</a>
         <!-- Add more profile details as needed -->
         </body>
         </html>

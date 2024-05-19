@@ -25,5 +25,5 @@ Route::post('register', [RegisterController::class, 'register']);
 
 //Route::resource('volunteer', VolunteerController::class);
 Route::get('/volunteer/{id}', [VolunteerController::class, 'showProfile'])->name('volunteer.showProfile');
-
-
+Route::get('/volunteer/{id}/edit', [VolunteerController::class, 'edit'])->name('volunteer.edit');
+Route::put('/volunteer/{id}', [VolunteerController::class, 'update'])->name('volunteer.update');
