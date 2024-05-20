@@ -16,6 +16,16 @@ class Volunteer extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function book(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Book::class);
+    }
+
+    public function members(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Member::class);
+    }
     /*$user = User::find(1); // Assuming user with ID 1 exists
     $volunteer = $user->volunteer;*/
 }

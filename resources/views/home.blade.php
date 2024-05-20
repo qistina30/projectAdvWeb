@@ -27,6 +27,9 @@
                 <a href="{{ route('volunteer.showProfile', ['id' => Auth::user()->id]) }}" class="btn btn-primary">
                     View Profile
                 </a>
+                <a href="{{ route('book.create')}}" class="btn btn-primary">
+                    Add New Book
+                </a>
             </div>
         </div>
     </div>
