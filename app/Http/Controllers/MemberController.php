@@ -7,59 +7,74 @@ use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $members = Member::all();
+        return view('member.index', compact('members'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('member.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'ic_number' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'phoneNo' => 'required|string|max:255',
+        ]);
+
+        Member::create([
+            'volunteer_id' => auth()->user()->volunteer->id,
+            'name' => $request->input('name'),
+            'ic_number' => $request->input('ic_number'),
+            'address' => $request->input('address'),
+            'phoneNo' => $request->input('phoneNo'),
+        ]);
+
+        return redirect()->route('member.index')->with('success', 'Member created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Member $member)
+    public function edit($id)
     {
-        //
+        $member = Member::findOrFail($id);
+        return view('member.edit', compact('member'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Member $member)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'ic_number' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'phoneNo' => 'required|string|max:255',
+        ]);
+
+        $member = Member::findOrFail($id);
+        $member->update([
+            'name' => $request->input('name'),
+            'ic_number' => $request->input('ic_number'),
+            'address' => $request->input('address'),
+            'phoneNo' => $request->input('phoneNo'),
+        ]);
+
+        return redirect()->route('member.index')->with('success', 'Member updated successfully.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Member $member)
+    public function show($id)
     {
-        //
+        $member = Member::findOrFail($id);
+        return view('member.show', compact('member'));
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Member $member)
+    public function destroy($id)
     {
-        //
+        $member = Member::findOrFail($id);
+        $member->delete();
+
+        return redirect()->route('member.index')
+            ->with('success', 'Membership deleted successfully.');
     }
 }

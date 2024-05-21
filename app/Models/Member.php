@@ -11,6 +11,12 @@ class Member extends Model
     use HasFactory;
     use SoftDeletes;
 
+
+    protected $fillable = [
+        'name', 'volunteer_id', 'ic_number', 'address','phoneNo',
+    ];
+
+
     public function volunteer()
     {
         return $this->belongsTo(Volunteer::class);

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\VolunteerController;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +38,16 @@ Route::get('/Book/create', [BookController::class, 'create'])->name('book.create
 Route::get('/book/{id}/edit', [BookController::class, 'edit'])->name('book.edit');
 Route::put('/book/{id}', [BookController::class, 'update'])->name('book.update');
 Route::delete('/book/{id}', [BookController::class, 'destroy'])->name('book.destroy');
+
+//Member Route
+Route::get('/member/create', [MemberController::class, 'create'])->name('member.create');
+Route::post('/member', [MemberController::class, 'store'])->name('member.store');
+Route::get('/member', [MemberController::class, 'index'])->name('member.index');
+Route::get('/member/{id}/edit', [MemberController::class, 'edit'])->name('member.edit');
+Route::delete('/member/{id}', [MemberController::class, 'destroy'])->name('member.destroy');
+Route::put('/member/{id}', [MemberController::class, 'update'])->name('member.update');
+Route::get('/member/{id}', [MemberController::class, 'show'])->name('member.show');
+
 
 
 

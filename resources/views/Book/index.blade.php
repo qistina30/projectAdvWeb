@@ -7,6 +7,9 @@
                 <h2>All Books</h2>
             </div>
             <div class="card-body">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="{{route('book.create')}}" class="btn btn-success me-md-2" >Add New Book</a>
+                </div>
                 @if (session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
@@ -52,11 +55,13 @@
                                     @else
                                         <span class="text-muted">Not authorized to edit</span>
                                     @endif
+                                    @if ($book->book_status === 'Available')
                                 <form action="{{ route('book.destroy', $book->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this book?')">Delete</button>
                                 </form>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
