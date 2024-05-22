@@ -33,6 +33,12 @@
                 <a href="{{ route('member.index')}}" class="btn btn-primary">
                     Registered Member
                 </a>
+                <a href="{{ route('records.index')}}" class="btn btn-primary">
+                    Borrow Records
+                </a>
+                <a href="{{ route('records.search')}}" class="btn btn-primary">
+                    Search Records
+                </a>
             </div>
         </div>
     </div>

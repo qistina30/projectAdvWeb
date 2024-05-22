@@ -34,6 +34,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Volunteer::class);
     }
+    public function records()
+    {
+        return $this->hasMany(Record::class);
+    }
     /**
      * Get the attributes that should be cast.
      *

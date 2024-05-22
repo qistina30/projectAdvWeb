@@ -21,4 +21,9 @@ class Member extends Model
     {
         return $this->belongsTo(Volunteer::class);
     }
+    public function records()
+    {
+        return $this->hasMany(Record::class);
+    }
+
 }

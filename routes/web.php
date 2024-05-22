@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BorrowingRecordsController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\RecordController;
 use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\VolunteerController;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +49,15 @@ Route::get('/member/{id}/edit', [MemberController::class, 'edit'])->name('member
 Route::delete('/member/{id}', [MemberController::class, 'destroy'])->name('member.destroy');
 Route::put('/member/{id}', [MemberController::class, 'update'])->name('member.update');
 Route::get('/member/{id}', [MemberController::class, 'show'])->name('member.show');
+//Record route
+Route::get('/records', [RecordController::class, 'index'])->name('records.index');
+Route::get('/records/create', [RecordController::class, 'create'])->name('records.create');
+Route::post('/records', [RecordController::class, 'store'])->name('records.store');
+Route::get('/records/{id}/edit', [RecordController::class, 'edit'])->name('records.edit');
+Route::put('/records/{id}', [RecordController::class, 'update'])->name('records.update');
+Route::delete('/records/{id}', [RecordController::class, 'destroy'])->name('records.destroy');
+
+Route::post('/records/search', [RecordController::class, 'search'])->name('records.search');
 
 
 

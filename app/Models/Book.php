@@ -12,13 +12,19 @@ class Book extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'author', 'publisher_name', 'published_year','category','status','volunteer_id'
+        'title', 'author', 'publisher_name', 'published_year','category','status','volunteer_id','id'
     ];
 
     public function volunteer()
     {
         return $this->belongsTo(Volunteer::class);
     }
+    public function records()
+    {
+        return $this->hasMany(Record::class);
+    }
+
+
 }
 /*$table->string('title');
 $table->string('author');

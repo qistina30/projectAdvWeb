@@ -26,6 +26,12 @@ class Volunteer extends Model
     {
         return $this->hasMany(Member::class);
     }
+
+    public function records()
+    {
+        return $this->hasMany(Record::class);
+    }
+
     /*$user = User::find(1); // Assuming user with ID 1 exists
     $volunteer = $user->volunteer;*/
 }
