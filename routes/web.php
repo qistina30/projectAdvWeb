@@ -54,11 +54,13 @@ Route::get('/records', [RecordController::class, 'index'])->name('records.index'
 Route::get('/records/create', [RecordController::class, 'create'])->name('records.create');
 Route::post('/records', [RecordController::class, 'store'])->name('records.store');
 Route::get('/records/{id}/edit', [RecordController::class, 'edit'])->name('records.edit');
-Route::put('/records/{id}', [RecordController::class, 'update'])->name('records.update');
+
 Route::delete('/records/{id}', [RecordController::class, 'destroy'])->name('records.destroy');
 
-Route::post('/records/search', [RecordController::class, 'search'])->name('records.search');
 
+Route::put('/records/{id}', [RecordController::class, 'update'])->name('records.update');
+
+//Route::resource('/records',RecordController::class);
 
 
 
