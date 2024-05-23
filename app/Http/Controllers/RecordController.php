@@ -34,7 +34,7 @@ class RecordController extends Controller
         Record::create([
             'book_id' => $request->book_id,
             'member_id' => $request->member_id,
-            'volunteer_id' => Auth::id(), // Assuming the currently logged-in user is the volunteer
+            'volunteer_id' => Auth::user()->volunteer->id, // Assuming the currently logged-in user is the volunteer
             'borrowing_date' => $request->borrowing_date,
         ]);
 

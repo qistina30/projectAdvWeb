@@ -11,6 +11,10 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function isAdmin()
+    {
+        return $this->userLevel == '0';
+    }
     /**
      * The attributes that are mass assignable.
      *

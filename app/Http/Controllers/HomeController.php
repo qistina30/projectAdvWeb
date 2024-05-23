@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\Member;
+use App\Models\Record;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,8 +24,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+
+        public function index()
     {
-        return view('home');
+        $totalBooks = Book::count();
+        $totalMemberships = Member::count();
+        $totalBorrowedBooks = Record::count();
+
+        return view('home', compact('totalBooks', 'totalMemberships', 'totalBorrowedBooks'));
     }
+
 }

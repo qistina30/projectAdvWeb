@@ -25,10 +25,12 @@ class MemberFactory extends Factory
             //
             'name' => $this->faker->name,
             'volunteer_id' => $volId,
-            'ic_number'=> $this->faker->myKadNumber($gender = null|'male'|'female', $hyphen = null|true|false),// "710703471796"
+            'ic_number'=> $this->faker->myKadNumber($gender = 'male'|'female', $hyphen = true|false),// "710703471796"
             'address'=> $this->faker->township()->townState(),
-            'phoneNo' => $this->faker->voipNumber($countryCodePrefix = null|true|false, $formatting = null|true|false), // "015-458 7099",
+            'phoneNo' => $this->faker->voipNumber($countryCodePrefix = true|false, $formatting = true|false), // "015-458 7099",
 
         ];
+
+
     }
 }

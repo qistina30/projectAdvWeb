@@ -9,7 +9,9 @@ class MemberController extends Controller
 {
     public function index()
     {
-        $members = Member::all();
+        /*$members = Member::all();
+        return view('member.index', compact('members'));*/
+        $members = Member::paginate(10);
         return view('member.index', compact('members'));
     }
 

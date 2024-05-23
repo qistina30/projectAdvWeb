@@ -10,7 +10,9 @@ class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::all();
+        /*$books = Book::all();
+        return view('book.index', compact('books'));*/
+        $books = Book::paginate(10); // Adjust the number 10 to the number of items per page you want
         return view('book.index', compact('books'));
     }
 
@@ -56,9 +58,9 @@ class BookController extends Controller
         $book = Book::findOrFail($id);
 
         // Check if the logged-in user is the one who added the book
-        if ($book->volunteer_id !==  Auth::user()->volunteer->id) {
+       /* if ($book->volunteer_id !==  Auth::user()->volunteer->id) {
             return redirect()->route('book.index')->with('error', 'You are not authorized to edit this book.');
-        }
+        }*/
 
         return view('book.edit', compact('book'));
     }
@@ -76,9 +78,9 @@ class BookController extends Controller
         $book = Book::findOrFail($id);
 
         // Check if the logged-in user is the one who added the book
-        if ($book->volunteer_id !==  Auth::user()->volunteer->id) {
+        /*if ($book->volunteer_id !==  Auth::user()->volunteer->id) {
             return redirect()->route('book.index')->with('error', 'You are not authorized to edit this book.');
-        }
+        }*/
 
         $book->update([
             'title' => $request->input('title'),
