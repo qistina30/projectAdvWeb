@@ -15,6 +15,11 @@ class BookController extends Controller
         $books = Book::paginate(10); // Adjust the number 10 to the number of items per page you want
         return view('book.index', compact('books'));
     }
+    public function available()
+    {
+        $books = Book::where('book_status', 'Available')->get();
+        return view('book.available', compact('books'));
+    }
 
     public function show($id)
     {

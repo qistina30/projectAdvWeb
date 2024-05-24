@@ -24,11 +24,12 @@ class MemberController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'ic_number' => 'required|string|max:255',
+            'ic_number' => 'required|regex:/^\d{6}-\d{2}-\d{4}$/',
             'address' => 'required|string|max:255',
-            'phoneNo' => 'required|string|max:255',
+            'phoneNo' => 'required|regex:/^0\d{8,}$/',
         ]);
 
+        // Proceed to store the member in the database
         Member::create([
             'volunteer_id' => auth()->user()->volunteer->id,
             'name' => $request->input('name'),
@@ -37,8 +38,9 @@ class MemberController extends Controller
             'phoneNo' => $request->input('phoneNo'),
         ]);
 
-        return redirect()->route('member.index')->with('success', 'Member created successfully.');
+        return redirect()->route('member.index')->with('success', 'Member added successfully.');
     }
+
 
     public function edit($id)
     {

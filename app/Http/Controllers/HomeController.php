@@ -31,7 +31,9 @@ class HomeController extends Controller
         $totalMemberships = Member::count();
         $totalBorrowedBooks = Record::count();
 
-        return view('home', compact('totalBooks', 'totalMemberships', 'totalBorrowedBooks'));
+        $totalAvailableBooks = Book::where('book_status', 'Available')->count();
+
+        return view('home', compact('totalBooks', 'totalMemberships', 'totalBorrowedBooks', 'totalAvailableBooks'));
     }
 
 }

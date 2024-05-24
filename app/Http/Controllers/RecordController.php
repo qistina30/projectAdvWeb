@@ -12,7 +12,8 @@ class RecordController extends Controller
 {
     public function index()
     {
-        $records = Record::with(['book', 'member', 'volunteer'])->get();
+//        $records = Record::with(['book', 'member', 'volunteer'])->get();
+        $records= Record::paginate(10);
         return view('records.index', compact('records'));
     }
 
@@ -68,7 +69,7 @@ class RecordController extends Controller
         $book->book_status = 'Available';
         $book->save();
 
-        return redirect()->route('records.index')->with('success', 'Borrowing record updated successfully.');
+        return redirect()->route('records.index')->with('success', 'Returning date updated successfully.');
     }
 
     public function destroy($id)

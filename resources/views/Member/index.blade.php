@@ -43,7 +43,7 @@
                                 <th>IC Number</th>
                                 <th>Address</th>
                                 <th>Phone Number</th>
-                                <th>Actions</th>
+
                             </tr>
                             </thead>
                             <tbody>
@@ -55,19 +55,22 @@
                                     <td>{{ $member->address }}</td>
                                     <td>{{ $member->phoneNo }}</td>
                                     <td class="d-flex">
-                                        <a href="{{ route('member.show', ['id' => $member->id]) }}" class="btn btn-info btn-sm me-2">
-                                            <i class="fas fa-eye"></i> View
-                                        </a>
-                                        <a href="{{ route('member.edit', $member->id) }}" class="btn btn-primary btn-sm me-2">
-                                            <i class="fas fa-edit"></i> Edit
-                                        </a>
-                                        <form action="{{ route('member.destroy', $member->id) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this member?')">
-                                                <i class="fas fa-trash"></i> Delete
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" aria-haspopup="true" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Actions
                                             </button>
-                                        </form>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <li><a class="dropdown-item" href="{{ route('member.show', ['id' => $member->id]) }}"><i class="fas fa-eye" style="color: blue;"></i> View</a></li>
+                                                <li><a class="dropdown-item" href="{{ route('member.edit', $member->id) }}" ><i class="fas fa-edit" style="color: green;"></i> Edit</a></li>
+
+                                                <form action="{{ route('member.destroy', $member->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="dropdown-item" onclick="return confirm('Are you sure you want to delete this member?')"><i class="fas fa-trash" style="color: red;"></i> Delete</button>
+                                                </form>
+
+                                            </ul>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

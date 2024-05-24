@@ -34,6 +34,7 @@ Route::put('/volunteer/{id}', [VolunteerController::class, 'update'])->name('vol
 
 //Books route
 Route::get('/book', [BookController::class, 'index'])->name('book.index');
+Route::get('/book/available', [BookController::class, 'available'])->name('book.available');
 Route::get('/book/{id}', [BookController::class, 'show'])->name('book.show');
 Route::post('/book', [BookController::class, 'store'])->name('book.store');
 Route::get('/Book/create', [BookController::class, 'create'])->name('book.create');

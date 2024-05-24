@@ -19,6 +19,7 @@
 </head>
 <body>
 <div id="app">
+    @auth
     <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
@@ -41,7 +42,7 @@
                         <a class="nav-link" href="{{ route('member.index')}}">Membership</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('records.index')}}">Borrowed Books</a>
+                        <a class="nav-link" href="{{ route('records.index')}}">Borrowing Records</a>
                     </li>
                     @if (Auth::check() && Auth::user()->isAdmin())
                         <li class="nav-item">
@@ -96,7 +97,7 @@
         </div>
         </div>
     </nav>
-
+    @endauth
     <main class="py-4">
         @yield('content')
     </main>
