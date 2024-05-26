@@ -50,18 +50,10 @@ class VolunteerController extends Controller
             'phone' => $request->input('phone'),
         ]);
 
-        return redirect()->back()->withSuccess('Student record updated successfully.');
+        return redirect()->back()->withSuccess('Volunteer profile updated successfully.');
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     */
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Volunteer $volunteer)
     {
         //

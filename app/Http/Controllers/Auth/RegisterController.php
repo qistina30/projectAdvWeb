@@ -38,7 +38,9 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone' => ['required', 'string', 'min:10', 'max:15'], // Adjust min and max length as needed
+            'phone' => ['required', 'string', 'min:10', 'max:15', 'regex:/^[0-9]{10,15}$/'], // Adjust min and max length as needed
+        ], [
+            'phone.regex' => 'The phone number format is invalid. It should be between 10 to 15 digits.',
         ]);
     }
 

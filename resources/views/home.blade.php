@@ -49,6 +49,19 @@
                             </div>
                         </a>
                     </div>
+                    @if (Auth::check() && Auth::user()->isAdmin())
+                    <div class="col">
+                        <a href="#" class="text-decoration-none">
+                            <div class="card bg-danger text-white">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-user-clock fa-2x mb-3"></i>
+                                    <h5 class="card-title">Total Pending Approval</h5>
+                                    <p class="card-text fs-5">{{ $totalPendingApprovals }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

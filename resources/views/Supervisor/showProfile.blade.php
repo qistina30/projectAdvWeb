@@ -4,7 +4,7 @@
     <div class="container">
         <div class="card bg-secondary text-white">
             <div class="card-header bg-dark">
-                <h2>Volunteer Profile</h2>
+                <h2>Admin Profile</h2>
             </div>
 
             <div class="card-body bg-light text-dark">

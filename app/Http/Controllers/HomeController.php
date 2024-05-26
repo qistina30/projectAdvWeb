@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Member;
 use App\Models\Record;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -32,8 +33,10 @@ class HomeController extends Controller
         $totalBorrowedBooks = Record::count();
 
         $totalAvailableBooks = Book::where('book_status', 'Available')->count();
+        $totalPendingApprovals =User::where('approval_status','pending')->count();
 
-        return view('home', compact('totalBooks', 'totalMemberships', 'totalBorrowedBooks', 'totalAvailableBooks'));
+        return view('home', compact('totalBooks', 'totalMemberships', 'totalBorrowedBooks',
+            'totalAvailableBooks','totalPendingApprovals'));
     }
 
 }

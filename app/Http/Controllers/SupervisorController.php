@@ -47,13 +47,13 @@ class SupervisorController extends Controller
 
     public function showRegisterVolForm()
     {
-        $users = User::all();
+        $users = User::paginate(10);
         return view('Supervisor.register_vol', compact('users'));
     }
 
     public function index()
     {
-        //
+
     }
 
     /**

@@ -16,6 +16,28 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <!-- Custom CSS for Dark Theme -->
+    <style>
+        body {
+            background-color: #343a40; /* Dark background color */
+            color: white; /* Light text color */
+        }
+        .card {
+            background-color: #2c2f33;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #3a3f44;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
@@ -75,16 +97,16 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                @if (!Auth::check() || !Auth::user()->isAdmin())
                                 <a class="dropdown-item" href="{{ route('volunteer.showProfile', ['id' => Auth::user()->id]) }}">
                                     View Profile
                                 </a>
+                                @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-
-
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf

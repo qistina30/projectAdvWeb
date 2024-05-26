@@ -38,7 +38,7 @@
                             <th>Book ID</th>
                             <th>Book Title</th>
                             <th>Member Name(IC)</th>
-                            <th>Volunteer Name</th>
+{{--                            <th>Volunteer Name</th>--}}
                             <th>Borrowing Date</th>
                             <th>Returning Date</th>
                             <th>Actions</th>
@@ -50,7 +50,7 @@
                                 <td>{{ $record->book->id }}</td>
                                 <td>{{ $record->book->title }}</td>
                                 <td>{{ $record->member->name }} ({{ $record->member->ic_number }})</td>
-                                <td>{{ $record->volunteer->user->name }}</td>
+{{--                                <td>{{ $record->volunteer->user->name }}</td>--}}
                                 <td>{{ \Carbon\Carbon::parse($record->borrowing_date)->format('d-m-Y') }}</td>
                                 <td>{{ $record->returning_date ? \Carbon\Carbon::parse($record->returning_date)->format('d-m-Y') : 'Not returned yet' }}</td>
                                 <td>

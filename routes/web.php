@@ -20,6 +20,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::post('/Supervisor/updateStatus/{user}', [SupervisorController::class, 'updateStatus'])
     ->name('Supervisor.updateStatus');
 
+
 Route::get('/Supervisor/register_vol', [SupervisorController::class, 'showRegisterVolForm'])->name('Supervisor.register_vol');
 //Route::resource('supervisor', SupervisorController::class);
 
