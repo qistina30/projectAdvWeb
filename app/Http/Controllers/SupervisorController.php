@@ -39,7 +39,7 @@ class SupervisorController extends Controller
         }
 
         // Set appropriate success message based on the status
-        $message = ($status === 'approved') ? 'User approved successfully.' : 'User rejected successfully.';
+        $message = ($status === 'approved') ? 'Volunteer approved successfully.' : 'Volunteer rejected successfully.';
 
         // Redirect back to the same page with the success message
         return redirect()->back()->with('success', $message);
@@ -51,6 +51,14 @@ class SupervisorController extends Controller
         return view('Supervisor.register_vol', compact('users'));
     }
 
+    public function pending()
+    {
+        // Fetch users with approval_status 'pending'
+        $users = User::where('approval_status', 'pending')->paginate(10);
+
+        // Pass the filtered users to the view
+        return view('Supervisor.pendingVol', compact('users'));
+    }
     public function index()
     {
 

@@ -13,7 +13,11 @@ class VolunteerController extends Controller
      */
     public function index()
     {
-        //
+        // Retrieve all volunteers
+        $volunteers = Volunteer::paginate(10); // Adjust the number as needed for pagination
+
+        // Return the view with the volunteers data
+        return view('volunteer.index', compact('volunteers'));
     }
 
     public function showProfile($id)
