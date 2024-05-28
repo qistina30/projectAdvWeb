@@ -57,7 +57,7 @@
     @auth
     <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+            <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
                 <img src="{{ asset('images/library.png') }}" alt="Logo" style="height: 30px; margin-right: 10px;">
                 {{ config('app.name', 'Laravel') }}
             </a>
@@ -92,7 +92,8 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{{ route('records.index')}}" role="button" aria-expanded="false">Borrowing Records</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('records.index')}}">Add New Record</a></li>
+                            <li><a class="dropdown-item" href="{{ route('records.index')}}">View All Record</a></li>
+                            <li><a class="dropdown-item" href="{{ route('records.create')}}">Add New Record</a></li>
                         </ul>
                     </li>
                     @if (Auth::check() && Auth::user()->isAdmin())

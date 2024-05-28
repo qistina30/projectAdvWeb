@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        .card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+    </style>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">
@@ -61,7 +72,7 @@
                                 </div>
                             </a>
                         </div>
-                    @endif
+
 
                     <div class="col">
                         <a href="{{ route('volunteer.index') }}" class="text-decoration-none">
@@ -74,6 +85,7 @@
                             </div>
                         </a>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

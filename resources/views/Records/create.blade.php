@@ -15,6 +15,7 @@
                                 <select class="form-select" id="book_id" name="book_id" required>
                                     @foreach($books->sortBy('title') as $book)
                                         @if($book->book_status === 'Available')
+                                            <option>Select Book</option>
                                             <option value="{{ $book->id }}">{{ $book->title }}</option>
                                         @endif
                                     @endforeach
@@ -28,6 +29,7 @@
                             <div class="form-floating">
                                 <select class="form-select" id="member_id" name="member_id" required>
                                     @foreach($members->sortBy('name') as $member)
+                                        <option>Select Membership</option>
                                         <option value="{{ $member->id }}">{{ $member->name }} ({{ $member->ic_number }})</option>
                                     @endforeach
                                 </select>
