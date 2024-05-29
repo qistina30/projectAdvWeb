@@ -17,7 +17,10 @@ class Record extends Model
         'borrowing_date',
         'returning_date',
     ];
-
+    protected $casts = [
+        'borrowing_date' => 'date',
+        'returning_date' => 'date',
+    ];
     public function book()
     {
         return $this->belongsTo(Book::class);

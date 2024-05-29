@@ -8,20 +8,15 @@
             <div class="card-body bg-light text-dark">
                 <div class="row mb-3">
                     <div class="col-md-4">
-                        <div class="input-group">
-                            <input type="text" id="title" name="title" class="form-control" placeholder="Search Book Title" onkeyup="searchfunct()">
-                            <span class="input-group-text"><i class="fas fa-search"></i></span>
-                        </div>
+                        <form action="{{ route('book.index') }}" method="GET" class="input-group">
+                            <input type="text" id="title" name="title" class="form-control" placeholder="Search Book Title" value="{{ request()->input('title') }}">
+                            <button type="submit" class="btn btn-primary ms-2"><i class="fas fa-search"></i> Search</button>
+                        </form>
                     </div>
-                    <div class="col-md-8 d-flex justify-content-end">
+                    <div class="col-md-12 d-flex justify-content-end">
                         <a href="{{ route('book.create') }}" class="btn btn-success">
                             <i class="fas fa-plus"></i> Add New Book
                         </a>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-12 d-flex justify-content-center">
-                        {{ $books->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
 
@@ -47,7 +42,6 @@
                                 <th class="col">Published Year</th>
                                 <th class="col">Category</th>
                                 <th class="col">Status</th>
-
                             </tr>
                             </thead>
                             <tbody>
@@ -59,7 +53,13 @@
                                     <td>{{ $book->publisher_name }}</td>
                                     <td>{{ $book->published_year }}</td>
                                     <td>{{ $book->category }}</td>
-                                    <td>{{ $book->book_status }}</td>
+                                    <td>
+                                        @if($book->book_status === 'Available')
+                                            <span class="badge bg-success">{{ $book->book_status }}</span>
+                                        @elseif($book->book_status === 'Borrowed')
+                                            <span class="badge bg-warning">{{ $book->book_status }}</span>
+                                        @endif
+                                    </td>
                                     <td class="d-flex">
                                         <div class="dropdown">
                                             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" aria-haspopup="true" data-bs-toggle="dropdown" aria-expanded="false">
@@ -84,33 +84,15 @@
                         </table>
                     </div>
                 @endif
+                <div class="row mb-3">
+                    <div class="col-md-12 d-flex justify-content-center">
+                        {{ $books->links('pagination::bootstrap-4') }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 @endsection
 
 
-@section('scripts')
-    <script>
-        function searchfunct() {
-            console.log("Search function called."); // Debugging statement
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("title");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("bookTable");
-            tr = table.getElementsByTagName("tr");
 
-            for (i = 1; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1]; // Target the Title column
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script>
-@endsection

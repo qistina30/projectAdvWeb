@@ -7,11 +7,15 @@ use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        /*$members = Member::all();
-        return view('member.index', compact('members'));*/
-        $members = Member::paginate(10);
+        $query = Member::query();
+
+        if ($request->has('ic_number')) {
+            $query->where('ic_number', 'like', '%' . $request->input('ic_number') . '%');
+        }
+
+        $members = $query->paginate(10);
         return view('member.index', compact('members'));
     }
 

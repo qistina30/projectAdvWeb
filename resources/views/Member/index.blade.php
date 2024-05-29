@@ -7,22 +7,24 @@
                 <h2>Registered Members</h2>
             </div>
             <div class="card-body bg-light text-dark">
-
-                    {{--<div class="col-md-4">
-                        <input type="text" id="name" name="name" class="form-control"
-                               placeholder="Search by name" onkeyup="searchfunct()">
-                    </div>--}}
-                    <div class="row mb-3">
-                        <div class="col-md-12 d-flex justify-content-end">
-                            <a href="{{ route('member.create') }}" class="btn btn-success">
-                                <i class="fas fa-plus"></i> Add New Member
-                            </a>
-                        </div>
-                        <div class="col-md-12 d-flex justify-content-center">
-                            {{ $members->links('pagination::bootstrap-4') }}
-                        </div>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <form action="{{ route('member.index') }}" method="GET" class="input-group">
+                            <input type="text" id="ic_number" name="ic_number" class="form-control" placeholder="Search Membership IC Number" value="{{ request()->input('ic_number') }}">
+                            <button type="submit" class="btn btn-primary ms-2"><i class="fas fa-search"></i> Search</button>
+                        </form>
                     </div>
-
+                    <div class="col-md-12 d-flex justify-content-end">
+                        <a href="{{ route('member.create') }}" class="btn btn-success">
+                            <i class="fas fa-plus"></i> Add New Member
+                        </a>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12 d-flex justify-content-center">
+                        {{ $members->links('pagination::bootstrap-4') }}
+                    </div>
+                </div>
 
                 @if (session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
@@ -43,7 +45,7 @@
                                 <th>IC Number</th>
                                 <th>Address</th>
                                 <th>Phone Number</th>
-
+                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -82,5 +84,3 @@
         </div>
     </div>
 @endsection
-
-

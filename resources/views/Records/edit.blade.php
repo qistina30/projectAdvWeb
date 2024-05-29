@@ -1,7 +1,5 @@
 
 @extends('layouts.app')
-
-
 @section('content')
     <div class="container">
         <div class="card bg-secondary text-white">

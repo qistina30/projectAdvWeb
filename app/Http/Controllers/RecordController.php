@@ -10,10 +10,26 @@ use Illuminate\Support\Facades\Auth;
 
 class RecordController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-//        $records = Record::with(['book', 'member', 'volunteer'])->get();
-        $records= Record::paginate(10);
+        $bookId = $request->input('book_id');
+        $memberIc = $request->input('member_ic');
+        $query = Record::query();
+
+        if ($bookId) {
+            $query->whereHas('book', function($q) use ($bookId) {
+                $q->where('id', $bookId);
+            });
+        }
+
+        if ($memberIc) {
+            $query->whereHas('member', function($q) use ($memberIc) {
+                $q->where('ic_number', 'like', '%' . $memberIc . '%');
+            });
+        }
+
+        $records = $query->paginate(10);
+
         return view('records.index', compact('records'));
     }
 
@@ -80,20 +96,34 @@ class RecordController extends Controller
         return redirect()->route('records.index')->with('success', 'Borrowing record deleted successfully.');
     }
 
-    public function search(Request $request)
+    public function editDetails($id)
     {
+        $record = Record::with(['book', 'member'])->findOrFail($id);
+        $books = Book::all();
+        $members = Member::all();
+        return view('records.editDetails', compact('record', 'books', 'members'));
+    }
+
+    public function updateDetails(Request $request, $id)
+    {
+        $record = Record::findOrFail($id);
+
+        // Validate the request
         $request->validate([
             'book_id' => 'required|exists:books,id',
+            'member_id' => 'required|exists:members,id',
+            'borrowing_date' => 'required|date',
         ]);
 
-        $record = Record::where('book_id', $request->book_id)->first();
+        // Update the record
+        $record->book_id = $request->input('book_id');
+        $record->member_id = $request->input('member_id');
+        $record->borrowing_date = $request->input('borrowing_date');
+        $record->save();
 
-        if (!$record) {
-            return redirect()->back()->with('error', 'No borrowing record found for this book.');
-        }
-
-        return view('records.update', compact('record'));
+        return redirect()->route('records.index')->with('success', 'Borrowing record updated successfully.');
     }
+
 
 
 }

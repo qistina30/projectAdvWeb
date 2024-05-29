@@ -75,7 +75,7 @@
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{{ route('book.index')}}" role="button" aria-expanded="false">Books Collection</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('book.index')}}">View All Book</a></li>
-                            <li><a class="dropdown-item" href="{{ route('book.create')}}">Add New Book</a></li>
+{{--                            <li><a class="dropdown-item" href="{{ route('book.create')}}">Add New Book</a></li>--}}
                             <li><a class="dropdown-item" href="{{ route('book.available')}}">View Available Book</a></li>
                             <li><a class="dropdown-item" href="{{ route('records.index')}}">View Borrowed Book</a></li>
 
@@ -85,7 +85,7 @@
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{{ route('member.index')}}" role="button" aria-expanded="false">Membership</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('member.index')}}">View All Member</a></li>
-                            <li><a class="dropdown-item" href="{{ route('member.create')}}">Add New Member</a></li>
+{{--                            <li><a class="dropdown-item" href="{{ route('member.create')}}">Add New Member</a></li>--}}
 
                         </ul>
                     </li>
@@ -93,7 +93,7 @@
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{{ route('records.index')}}" role="button" aria-expanded="false">Borrowing Records</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('records.index')}}">View All Record</a></li>
-                            <li><a class="dropdown-item" href="{{ route('records.create')}}">Add New Record</a></li>
+{{--                            <li><a class="dropdown-item" href="{{ route('records.create')}}">Add New Record</a></li>--}}
                         </ul>
                     </li>
                     @if (Auth::check() && Auth::user()->isAdmin())

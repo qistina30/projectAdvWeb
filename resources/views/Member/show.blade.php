@@ -68,8 +68,8 @@
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $record->book->title }}</td>
-                                        <td>{{ $record->borrowing_date }}</td>
-                                        <td>{{ $record->returning_date ?? 'Not returned yet' }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($record->borrowing_date)->format('d-m-Y') }}</td>
+                                        <td>{{ $record->returning_date ? \Carbon\Carbon::parse($record->returning_date)->format('d-m-Y') : 'Not returned yet' }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

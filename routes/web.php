@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\BorrowingRecordsController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\SupervisorController;
@@ -11,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login'); // Redirect to login page
 });
 
 Auth::routes();
@@ -62,6 +61,8 @@ Route::post('/records', [RecordController::class, 'store'])->name('records.store
 Route::get('/records/{id}/edit', [RecordController::class, 'edit'])->name('records.edit');
 Route::delete('/records/{id}', [RecordController::class, 'destroy'])->name('records.destroy');
 Route::put('/records/{id}', [RecordController::class, 'update'])->name('records.update');
+Route::get('/records/{id}/editDetails', [RecordController::class, 'editDetails'])->name('records.editDetails');
+Route::put('/records/{id}/updateDetails', [RecordController::class, 'updateDetails'])->name('records.updateDetails');
 
 //Route::resource('/records',RecordController::class);
 

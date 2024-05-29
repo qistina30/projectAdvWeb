@@ -8,13 +8,20 @@ use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         /*$books = Book::all();
         return view('book.index', compact('books'));*/
-        $books = Book::paginate(10); // Adjust the number 10 to the number of items per page you want
+        $search = $request->input('title');
+        $query = Book::query();
+
+        if ($search) {
+            $query->where('title', 'like', '%' . $search . '%');
+        }
+        $books = $query->paginate(10); // Adjust the number 10 to the number of items per page you want
         return view('book.index', compact('books'));
     }
+
     public function available()
     {
         $books = Book::where('book_status', 'Available')->get();
