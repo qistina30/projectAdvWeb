@@ -8,20 +8,17 @@
 
 K-Pustaka is designed to provide a **user-friendly digital solution** for small community libraries in rural areas. This system ensures better organization, enhanced user experience, and supports the digital transformation of traditional village libraries.
 
-This section outlines:
-- ✅ **Purpose**
-- ✅ **Scope**
-
 ---
 
 ## 🎯 1.1 Purpose
 
-This document aims to:
-- Provide a **comprehensive overview** of the K-Pustaka System's requirements
-- Act as a **reference for system development, design, and approval**
-- Define **system functionalities**, constraints, interfaces, and its interactions with external applications
+The purpose of the **K-Pustaka System** is to enhance the efficiency and accessibility of library operations in rural communities. It aims to:
 
-It serves as both a **technical guide for the development team** and a **reference for stakeholders** to understand the goals and implementation plan of the system.
+- Digitize the **book management** process for easier cataloging and organization
+- Simplify **membership registration** and record-keeping
+- Streamline **borrowing and returning** of books through an automated system
+- Provide **report generation** tools for tracking inventory and user activity
+- Support **library volunteers** and **members** with a user-friendly and intuitive interface
 
 ---
 
