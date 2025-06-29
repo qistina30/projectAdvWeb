@@ -44,15 +44,14 @@ The system aims to digitize manual processes and promote digital literacy in rur
 
 ## 🙌 Acknowledgements
 
-This project is developed as part of the Final Year Project with guidance from [Supervisor’s Name] and support from [University Name].
+This project is developed as part of the Subject Project.
 
 ---
 
 ## 👩‍💻 Developer
 
 **Nur Qistina Binti Mohamed Saifuddin**  
-Student ID: SW01083179  
-📫 [your-email@example.com]
+📫 [ksaifuddin67@gmail.com]
 
 ---
 
